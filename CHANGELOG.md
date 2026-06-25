@@ -1,3 +1,13 @@
+## 1.3.0
+* Fix stale properties bug on offstage loaded child widgets.
+* Support `const` constructor for `LazyLoadIndexedStack` and optimize default `unloadWidget` from `Container()` to `const SizedBox.shrink()`.
+* Add lifecycle hooks: `onLoaded`, `onDisposed`, and `onIndexChanged`.
+* Add programmatic controller `LazyLoadIndexedStackController`.
+* Add transition animations support with `transitionDuration`, custom `transitionBuilder`, and custom `transitionCurve`.
+* Add deferred/delay loading (debounce) support with `delayDuration`.
+* Add index bounds validation assertions for `preloadIndexes` and `autoDisposeIndexes` to raise descriptive errors during development.
+* Enable strict type checking analysis rules (`strict-casts`, `strict-inference`, `strict-raw-types`) in the codebase.
+
 ## 1.2.1
 * Fix issue where non-preloaded children were loaded when index changed in [#12](https://github.com/okaryo/lazy_load_indexed_stack/pull/12)
 

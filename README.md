@@ -15,11 +15,15 @@ Therefore, we created an extended IndexedStack that builds the required widget o
 
 ## Features
 * **Lazy Loading**: The main feature of `LazyLoadIndexedStack` is to build children widgets only when they are needed, reducing initial load time.
-* **Preloading**: With the `preloadIndexes` parameter, you can specify indexes of children that should be built in advance, even if they are not currently visible. This is useful for preloading widgets that are likely to be needed soon.
-* **Auto Disposal**: The `autoDisposeIndexes` parameter allows specific children to be automatically disposed of when they are no longer visible. When these children are accessed again, they will be rebuilt from scratch. This is useful for cases where widgets hold significant state or require resetting when revisited.
+* **Preloading**: With the `preloadIndexes` parameter, you can specify indexes of children that should be built in advance, even if they are not currently visible.
+* **Auto Disposal**: The `autoDisposeIndexes` parameter allows specific children to be automatically disposed of when they are no longer visible. When these children are accessed again, they will be rebuilt from scratch.
+* **Lifecycle Callbacks**: Hooks for when children are loaded, disposed, or when the active index changes.
+* **Programmatic Controller**: Control and check page loading status via `LazyLoadIndexedStackController`.
+* **Transition Animations**: Animate transitions between active indexes with custom durations and builders.
+* **Deferred Loading (Debounce)**: Prevent unnecessary loading during fast page switching/swiping.
 
 ## Usage
-You can use `LazyLoadIndexedStack` in the same way as `IndexedStack`, with additional options for preloading and auto dispose. If an index is included in both `preloadIndexes` and `autoDisposeIndexes`, it will be preloaded initially but disposed when it becomes invisible and rebuilt when accessed again.
+You can use `LazyLoadIndexedStack` in the same way as `IndexedStack`, with additional options.
 
 ### Basic Example
 ```dart
@@ -62,6 +66,41 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+```
+
+### Advanced Features Example
+
+```dart
+final controller = LazyLoadIndexedStackController();
+
+// Use the controller programmatically
+controller.preloadIndex(2); // Force preload index 2
+controller.disposeIndex(1); // Manually dispose loaded index 1
+bool loaded = controller.isLoaded(0); // Check if index 0 is loaded
+
+LazyLoadIndexedStack(
+  index: _index,
+  controller: controller,
+  // Delay loading by 300ms to debounce fast navigation
+  delayDuration: const Duration(milliseconds: 300),
+  // Cross-fade animation transition (300ms)
+  transitionDuration: const Duration(milliseconds: 300),
+  // Optional: Custom curve for transition
+  transitionCurve: Curves.bounceOut,
+  // Optional: Custom transition builder (defaults to FadeTransition)
+  transitionBuilder: (context, animation, child) {
+    return FadeTransition(opacity: animation, child: child);
+  },
+  // Lifecycle hooks
+  onLoaded: (index) => print('Page $index loaded'),
+  onDisposed: (index) => print('Page $index disposed'),
+  onIndexChanged: (index) => print('Active index changed to $index'),
+  children: [
+    Page1(),
+    Page2(),
+    Page3(),
+  ],
+)
 ```
 
 See more details in [Example](https://pub.dev/packages/lazy_load_indexed_stack/example) or [API reference](https://pub.dev/documentation/lazy_load_indexed_stack/latest/lazy_load_indexed_stack/LazyLoadIndexedStack-class.html)!

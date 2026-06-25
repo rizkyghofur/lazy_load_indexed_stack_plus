@@ -32,6 +32,10 @@ class _MainPageState extends State<MainPage> {
         body: LazyLoadIndexedStack(
           index: _index,
           preloadIndexes: const [2],
+          transitionDuration: const Duration(milliseconds: 300),
+          onLoaded: (index) => debugPrint('Page $index loaded'),
+          onDisposed: (index) => debugPrint('Page $index disposed'),
+          onIndexChanged: (index) => debugPrint('Index changed to $index'),
           children: const [
             Page1(),
             Page2(),
