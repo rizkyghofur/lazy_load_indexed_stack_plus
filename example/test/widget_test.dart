@@ -9,20 +9,18 @@ void main() {
     await tester.pumpWidget(const MainApp());
     await tester.pump(); // Let post-frame callbacks complete
 
-    // Verify that page1 is loaded (active) and page3 is preloaded (offstage).
-    expect(find.text('page1'), findsOneWidget);
-    expect(find.text('page2'), findsNothing);
-    expect(find.text('page3', skipOffstage: false), findsOneWidget);
-    expect(find.text('page3'), findsNothing); // offstage
+    // Verify that page1 is loaded (active) and page2 & 3 are not loaded
+    expect(find.text('This is Page 1 (Loaded and Active)'), findsOneWidget);
+    expect(find.text('This is Page 2 (Loaded and Active)'), findsNothing);
+    expect(find.text('This is Page 3 (Loaded and Active)'), findsNothing);
 
     // Tap bottom navigation icon associated with page2 (index 1).
     await tester.tap(find.byIcon(Icons.today));
     await tester.pumpAndSettle();
 
-    // Verify that page2 is now active/loaded, page1 is offstage but loaded, page3 is offstage but loaded.
-    expect(find.text('page2'), findsOneWidget);
-    expect(find.text('page1', skipOffstage: false), findsOneWidget);
-    expect(find.text('page1'), findsNothing); // offstage now
-    expect(find.text('page3', skipOffstage: false), findsOneWidget);
+    // Verify that page2 is now active/loaded
+    expect(find.text('This is Page 2 (Loaded and Active)'), findsOneWidget);
+    expect(find.text('This is Page 1 (Loaded and Active)', skipOffstage: false), findsOneWidget);
+    expect(find.text('This is Page 1 (Loaded and Active)'), findsNothing); // offstage now
   });
 }

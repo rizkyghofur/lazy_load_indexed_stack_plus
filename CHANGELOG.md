@@ -1,3 +1,14 @@
+## 1.4.0
+* Add `preserveState` parameter to automatically assign PageStorageKeys to offstage child widgets.
+* Add `LazyLoadIndexedStackTheme` and `LazyLoadIndexedStackThemeData` to configure settings globally.
+* Add `onBuildDuration` callback to monitor page building and rendering times.
+* Add `maxActivePages` policy for LRU caching.
+* Add `idleTimeout` for automatic disposal of idle offstage pages.
+* Add `onBeforeIndexChanged` and `onIndexChangeRejected` for guarding and intercepting index changes.
+* Add `directionalTransitionBuilder` for direction-aware transition animations.
+* Add `unloadWidgetBuilder` for custom loader / placeholder UI per index.
+* Add new methods to `LazyLoadIndexedStackController`: `reloadIndex`, `disposeAllExceptActive`, and `loadAll`.
+
 ## 1.3.0
 * Fix stale properties bug on offstage loaded child widgets.
 * Support `const` constructor for `LazyLoadIndexedStack` and optimize default `unloadWidget` from `Container()` to `const SizedBox.shrink()`.
