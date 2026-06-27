@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
+import 'package:lazy_load_indexed_stack_plus/lazy_load_indexed_stack.dart';
 
 void main() {
   runApp(const MainApp());

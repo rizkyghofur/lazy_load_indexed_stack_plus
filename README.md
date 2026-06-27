@@ -1,7 +1,6 @@
-[![CI](https://github.com/okaryo/lazy_load_indexed_stack/actions/workflows/ci.yml/badge.svg)](https://github.com/okaryo/lazy_load_indexed_stack/actions/workflows/ci.yml)
-[![Pub](https://img.shields.io/pub/v/lazy_load_indexed_stack)](https://pub.dev/packages/lazy_load_indexed_stack)
+# lazy_load_indexed_stack_plus
 
-# lazy_load_indexed_stack
+This package is a fork of [lazy_load_indexed_stack](https://github.com/okaryo/lazy_load_indexed_stack).
 
 A package that extends IndexedStack to allow for lazy loading and provides enhanced control for reloading specific child widgets.
 
@@ -14,25 +13,28 @@ Moreover, if the widget requires API requests or database access, or has a compl
 Therefore, we created an extended IndexedStack that builds the required widget only when it is needed and returns the pre-built widget when it is needed again.
 
 ## Features
-* **Lazy Loading**: The main feature of `LazyLoadIndexedStack` is to build children widgets only when they are needed, reducing initial load time.
-* **Preloading**: With the `preloadIndexes` parameter, you can specify indexes of children that should be built in advance, even if they are not currently visible.
-* **Auto Disposal**: The `autoDisposeIndexes` parameter allows specific children to be automatically disposed of when they are no longer visible. When these children are accessed again, they will be rebuilt from scratch.
-* **LRU Cache Limit**: Limit the number of loaded pages in memory automatically via `maxActivePages`.
-* **Idle Timeout**: Set `idleTimeout` to automatically unload offstage pages that have been inactive for a given duration.
-* **Page Guards**: Intercept index changes using `onBeforeIndexChanged` to validate or reject page transitions.
-* **Lifecycle Callbacks**: Hooks for when children are loaded, disposed, index changes, or index changes are rejected.
-* **Programmatic Controller**: Control page loading status, trigger reloads (`reloadIndex`), load all (`loadAll`), or clean memory (`disposeAllExceptActive`) via `LazyLoadIndexedStackController`.
-* **Directional/Transition Animations**: Animate transitions between active indexes with custom durations, curves, and direction-aware custom builders (`directionalTransitionBuilder`).
-* **Custom Placeholder Builders**: Customize the loading widget per-index via `unloadWidgetBuilder`.
-* **State Preservation**: Automatically assign PageStorageKeys to offstage children to keep their scroll positions when unloaded via `preserveState`.
-* **Global Theme/Configuration**: Configure settings like transition duration, curves, active limits, and timeouts globally for all stacks using `LazyLoadIndexedStackTheme`.
-* **Performance Metrics**: Callback `onBuildDuration` to report how long each page takes to build and render.
-* **Deferred Loading (Debounce)**: Prevent unnecessary loading during fast page switching/swiping.
+
+- **Lazy Loading**: The main feature of `LazyLoadIndexedStack` is to build children widgets only when they are needed, reducing initial load time.
+- **Preloading**: With the `preloadIndexes` parameter, you can specify indexes of children that should be built in advance, even if they are not currently visible.
+- **Auto Disposal**: The `autoDisposeIndexes` parameter allows specific children to be automatically disposed of when they are no longer visible. When these children are accessed again, they will be rebuilt from scratch.
+- **LRU Cache Limit**: Limit the number of loaded pages in memory automatically via `maxActivePages`.
+- **Idle Timeout**: Set `idleTimeout` to automatically unload offstage pages that have been inactive for a given duration.
+- **Page Guards**: Intercept index changes using `onBeforeIndexChanged` to validate or reject page transitions.
+- **Lifecycle Callbacks**: Hooks for when children are loaded, disposed, index changes, or index changes are rejected.
+- **Programmatic Controller**: Control page loading status, trigger reloads (`reloadIndex`), load all (`loadAll`), or clean memory (`disposeAllExceptActive`) via `LazyLoadIndexedStackController`.
+- **Directional/Transition Animations**: Animate transitions between active indexes with custom durations, curves, and direction-aware custom builders (`directionalTransitionBuilder`).
+- **Custom Placeholder Builders**: Customize the loading widget per-index via `unloadWidgetBuilder`.
+- **State Preservation**: Automatically assign PageStorageKeys to offstage children to keep their scroll positions when unloaded via `preserveState`.
+- **Global Theme/Configuration**: Configure settings like transition duration, curves, active limits, and timeouts globally for all stacks using `LazyLoadIndexedStackTheme`.
+- **Performance Metrics**: Callback `onBuildDuration` to report how long each page takes to build and render.
+- **Deferred Loading (Debounce)**: Prevent unnecessary loading during fast page switching/swiping.
 
 ## Usage
+
 You can use `LazyLoadIndexedStack` in the same way as `IndexedStack`, with additional options.
 
 ### Basic Example
+
 ```dart
 class MainPage extends StatefulWidget {
   @override
@@ -74,6 +76,7 @@ class _MainPageState extends State<MainPage> {
   }
 }
 ```
+
 ### Advanced Features Example
 
 ```dart
@@ -142,4 +145,4 @@ LazyLoadIndexedStack(
 )
 ```
 
-See more details in [Example](https://pub.dev/packages/lazy_load_indexed_stack/example) or [API reference](https://pub.dev/documentation/lazy_load_indexed_stack/latest/lazy_load_indexed_stack/LazyLoadIndexedStack-class.html)!
+See more details in [Example](https://pub.dev/packages/lazy_load_indexed_stack_plus/example) or [API reference](https://pub.dev/documentation/lazy_load_indexed_stack_plus/latest/lazy_load_indexed_stack/LazyLoadIndexedStack-class.html)!
